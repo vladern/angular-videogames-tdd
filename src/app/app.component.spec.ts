@@ -26,10 +26,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('neuro-mobile-app');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('neuro-mobile-app app is running!');
-  });
 });
