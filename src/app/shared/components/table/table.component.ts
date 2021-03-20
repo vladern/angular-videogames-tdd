@@ -1,22 +1,6 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, Input, OnInit, Pipe } from '@angular/core';
-
-export interface ColumnConfig {
-  label: string;
-  sortable: boolean;
-  dataSourceParamName?: string;
-  pipe?: Pipe;
-  pipeArg?: string;
-  suffix?: string;
-  sort?: Sort;
-  icon?: string;
-  callback?: (index: number) => void
-}
-
-export enum Sort {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+import { ColumnConfig, Sort } from '@shared/models/table';
 
 @Component({
   selector: 'app-table',
@@ -43,18 +27,27 @@ export class TableComponent implements OnInit {
     ) {
       columnConfig.sort = Sort.ASC;
       this.dataSource.sort((a, b) =>
-        this._sortObject(a, b, columnConfig.dataSourceParamName, columnConfig.sort)
+        this._sortObject(
+          a,
+          b,
+          columnConfig.dataSourceParamName,
+          columnConfig.sort
+        )
       );
     } else {
       columnConfig.sort = Sort.DESC;
       this.dataSource.sort((a, b) =>
-        this._sortObject(a, b, columnConfig.dataSourceParamName, columnConfig.sort)
+        this._sortObject(
+          a,
+          b,
+          columnConfig.dataSourceParamName,
+          columnConfig.sort
+        )
       );
     }
   }
 
-
-  private  _sortObject(
+  private _sortObject(
     objectA: Object,
     objectB: Object,
     dataSourceParamName: string,
