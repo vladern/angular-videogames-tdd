@@ -9,6 +9,7 @@ export interface ColumnConfig {
   suffix?: string;
   sort?: Sort;
   icon?: string;
+  hasTags?: boolean;
   callback?: (index: number) => void;
 }
 

@@ -3,8 +3,22 @@
     <th *ngFor="let columnConfig of columnConfigList">
       <div class="header-contaner">
         <div class="sort-container" (click)="sort(columnConfig)">
-          <div *ngIf="columnConfig.sortable && (columnConfig.sort === Sort.ASC || columnConfig.sort === undefined)" class="arrow-up"></div>
-          <div *ngIf="columnConfig.sortable && (columnConfig.sort === Sort.DESC || columnConfig.sort === undefined)" class="arrow-down"></div>
+          <div
+            *ngIf="
+              columnConfig.sortable &&
+              (columnConfig.sort === Sort.ASC ||
+                columnConfig.sort === undefined)
+            "
+            class="arrow-up"
+          ></div>
+          <div
+            *ngIf="
+              columnConfig.sortable &&
+              (columnConfig.sort === Sort.DESC ||
+                columnConfig.sort === undefined)
+            "
+            class="arrow-down"
+          ></div>
         </div>
         <span>{{ columnConfig.label }}</span>
       </div>
@@ -12,12 +26,28 @@
   </tr>
   <tr *ngFor="let row of dataSource; let i = index">
     <td *ngFor="let columnConfig of columnConfigList">
-      <span *ngIf="columnConfig.pipe === undefined">{{row[columnConfig.dataSourceParamName]}}</span>
-      <span *ngIf="columnConfig.pipe === DatePipe">{{row[columnConfig.dataSourceParamName] | date: columnConfig.pipeArg}}</span>
-      <span *ngIf="columnConfig.pipe === DecimalPipe">{{row[columnConfig.dataSourceParamName] | number: columnConfig.pipeArg}}{{columnConfig.suffix}}</span>
-      <button *ngIf="columnConfig.callback !== undefined" mat-icon-button color="primary" (click)="columnConfig.callback(i)">
+      <span *ngIf="columnConfig.pipe === undefined">{{
+        row[columnConfig.dataSourceParamName]
+      }}</span>
+      <span *ngIf="columnConfig.pipe === DatePipe">{{
+        row[columnConfig.dataSourceParamName] | date: columnConfig.pipeArg
+      }}</span>
+      <span *ngIf="columnConfig.pipe === DecimalPipe"
+        >{{
+          row[columnConfig.dataSourceParamName] | number: columnConfig.pipeArg
+        }}{{ columnConfig.suffix }}</span
+      >
+      <button
+        *ngIf="columnConfig.callback !== undefined"
+        mat-icon-button
+        color="primary"
+        (click)="columnConfig.callback(i)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
+      <ng-container *ngIf="columnConfig.hasTags">
+        <mat-chip *ngFor="let tag of row[columnConfig.dataSourceParamName]">{{tag}}</mat-chip>
+      </ng-container>
     </td>
   </tr>
 </table>

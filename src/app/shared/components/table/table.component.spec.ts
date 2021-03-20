@@ -434,4 +434,24 @@ describe('TableComponent', () => {
     button.querySelector('mat-icon');
     expect(button.textContent).toEqual('delete');
   });
+
+  it('table should admit tags ', () => {
+    component.columnConfigList.push(
+      {
+        label: 'Tags',
+        sortable: false,
+        dataSourceParamName: 'tags',
+        hasTags: true,
+      }
+    );
+    component.dataSource.push({ tags: ['Action', 'Roguelige'] });
+    fixture.detectChanges();
+    const htmlElement: HTMLElement = fixture.nativeElement;
+    const table = htmlElement.querySelector('table');
+    const tr = table.querySelectorAll('tr');
+    const td = tr[1].querySelector('td');
+    const matChipList = td.querySelectorAll('mat-chip');
+    expect(matChipList[0].textContent).toEqual('Action');
+    expect(matChipList[1].textContent).toEqual('Roguelige');
+  });
 });
