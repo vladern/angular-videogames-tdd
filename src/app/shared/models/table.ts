@@ -1,6 +1,7 @@
 import { Pipe } from '@angular/core';
 
 export interface ColumnConfig {
+  id?: string,
   label: string;
   sortable: boolean;
   dataSourceParamName?: string;

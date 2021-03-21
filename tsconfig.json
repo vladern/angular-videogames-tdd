@@ -7,7 +7,8 @@
       "@env": ["src/environments/environment"],
       "@shared/*": ["src/app/shared/*"],
       "@core/*": ["src/app/core/*"],
-      "@style": ["src/styles/*"]
+      "@style": ["src/styles/*"],
+      "@configs": ["src/app/configs"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
