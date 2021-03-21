@@ -9,7 +9,6 @@ import { SharedModule } from '@shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { VideogamesRoutingModule } from '../../videogames-routing.module';
 import { By } from '@angular/platform-browser';
-import { ConfirmAlertComponent } from '@shared/components/confirm-alert/confirm-alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatDialog,
