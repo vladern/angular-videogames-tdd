@@ -7,13 +7,13 @@
       }
       
       td, th {
-        border: 1px solid $accent;
+        border: 1px solid $gray;
         text-align: left;
         padding: 8px;
       }
       
       tr:nth-child(even) {
-        background-color: $accent;
+        background-color: $gray;
       }
 
       .arrow-up {
@@ -22,7 +22,7 @@
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
         
-        border-bottom: 5px solid $accent;
+        border-bottom: 5px solid $gray;
         margin-bottom: 1px;
       }
       
@@ -32,7 +32,7 @@
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
         
-        border-top: 5px solid $accent;
+        border-top: 5px solid $gray;
         margin-top: 1px;
       }
 
@@ -49,6 +49,6 @@
       }
 
       mat-chip {
-        background-color: $accent;
+        background-color: $grayAccent;
       }
 }

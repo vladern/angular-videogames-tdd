@@ -26,7 +26,7 @@
   </tr>
   <tr *ngFor="let row of dataSource; let i = index">
     <td *ngFor="let columnConfig of columnConfigList">
-      <span *ngIf="columnConfig.pipe === undefined">{{
+      <span *ngIf="columnConfig.pipe === undefined && columnConfig.hasTags !== true">{{
         row[columnConfig.dataSourceParamName]
       }}</span>
       <span *ngIf="columnConfig.pipe === DatePipe">{{
@@ -46,8 +46,11 @@
         <mat-icon>delete</mat-icon>
       </button>
       <ng-container *ngIf="columnConfig.hasTags">
-        <mat-chip *ngFor="let tag of row[columnConfig.dataSourceParamName]">{{tag}}</mat-chip>
+        <mat-chip-list>
+          <mat-chip [selectable]="true" [removable]="false" *ngFor="let tag of row[columnConfig.dataSourceParamName]">{{tag}}</mat-chip>
+        </mat-chip-list>
       </ng-container>
     </td>
   </tr>
 </table>
+
