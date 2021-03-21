@@ -32,7 +32,7 @@ export const columnVideogamesConfigList: ColumnConfig[] = [
   {
     id: 'price',
     label: 'Price',
-    sortable: false,
+    sortable: true,
     dataSourceParamName: 'price',
     pipe: DecimalPipe,
     pipeArg: '1.2',
