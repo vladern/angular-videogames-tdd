@@ -1,5 +1,8 @@
-import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -7,8 +10,10 @@ describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
 
   beforeEach(async () => {
+    const material = [MatIconModule, MatButtonModule, MatChipsModule];
     await TestBed.configureTestingModule({
       declarations: [TableComponent],
+      imports: [CommonModule, ...material],
     }).compileComponents();
   });
 
