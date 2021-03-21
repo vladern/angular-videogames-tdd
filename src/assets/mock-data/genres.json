@@ -1,0 +1,14 @@
+[
+    {
+      "id":"1",
+      "name":"RPG"
+    },
+    {
+      "id":"2",
+      "name":"Adventure"
+    },
+    {
+      "id":"3",
+      "name":"Action"
+    }
+  ]

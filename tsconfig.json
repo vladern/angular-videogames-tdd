@@ -9,6 +9,7 @@
       "@core/*": ["src/app/core/*"],
       "@style": ["src/styles/*"],
       "@configs": ["src/app/configs"],
+      "@assets": ["src/assets"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -24,8 +25,11 @@
       "es2018",
       "dom"
     ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
   }
+  
 }

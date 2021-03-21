@@ -1,0 +1,81 @@
+[
+  {
+    "id":"1",
+    "title":"Hades",
+    "genreId":"1",
+    "price":16.79,
+    "releaseDate":"2020-09-17",
+    "tags":[
+      "Action roguelike",
+      "roguelike",
+      "Action",
+      "indie"
+    ]
+  },
+  {
+    "id":"2",
+    "title":"Valheim",
+    "genreId":"2",
+    "price":16.79,
+    "releaseDate":"2021-02-02",
+    "tags":[
+      "Open World Survival Craft",
+      "Online Co-Op",
+      "Survival"
+    ]
+  },
+  {
+    "id":"3",
+    "title":"Cuphead",
+    "genreId":"3",
+    "price":19.99,
+    "releaseDate":"2017-09-29",
+    "tags":[
+      "Difficult",
+      "Cartoon",
+      "Platformer",
+      "Great Soundtrack"
+    ]
+  },
+  {
+    "id":"4",
+    "title":"Avernum: Escape From the Pit",
+    "genreId":"1",
+    "price":9.99,
+    "releaseDate":"2012-04-11",
+    "tags":[
+      "RPG",
+      "Indie",
+      "Isometric",
+      "Party-Based",
+      "RPG 2D"
+    ]
+  },
+  {
+    "id":"5",
+    "title":"The Binding of Isaac",
+    "genreId":"2",
+    "price":4.99,
+    "releaseDate":"2011-09-28",
+    "tags":[
+      "Action Roguelike",
+      "Roguelike",
+      "Indie",
+      "Replay Value"
+    ]
+  },
+  {
+    "id":"6",
+    "title":"Sepelunky 2",
+    "genreId":"3",
+    "price":16.79,
+    "releaseDate":"2020-09-29",
+    "tags":[
+      "Platformer",
+      "Action Roguelike",
+      "2D Platformer",
+      "Indie"
+    ]
+  }
+]
+

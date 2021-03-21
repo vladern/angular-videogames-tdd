@@ -1,9 +1,7 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { VideogamesService } from './videogames.service';
-import Ajv from 'ajv';
 import {
   HttpClientTestingModule,
-  HttpTestingController,
 } from '@angular/common/http/testing';
 import { Genre, Videogame } from '@shared/models/videogames';
 import { HttpResponse } from '@angular/common/http';
@@ -57,7 +55,7 @@ describe('VideogamesService', () => {
       })
     );
 
-    service.getVideogames().subscribe(({ body }) => {
+    service.getVideogames().subscribe((body) => {
       expect(body?.length).toBe(2);
       expect(body).toEqual(videogameList);
     });
@@ -81,7 +79,7 @@ describe('VideogamesService', () => {
       })
     );
 
-    service.getGenres().subscribe(({ body }) => {
+    service.getGenres().subscribe((body) => {
       expect(body?.length).toBe(2);
       expect(body).toEqual(genreList);
     });

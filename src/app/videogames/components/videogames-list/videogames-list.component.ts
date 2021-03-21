@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { columnVideogamesConfigList } from '@configs';
-import { VideogamesService } from '@core/services';
+import { VideogamesService } from '@core/services/videogames/videogames.service';
 import { ConfirmAlertComponent } from '@shared/components/confirm-alert/confirm-alert.component';
 import { ColumnConfig } from '@shared/models/table';
 import { Genre, Videogame } from '@shared/models/videogames';
@@ -25,26 +25,28 @@ export class VideogamesListComponent implements OnInit {
   }
 
   private _getGenreList(): void {
-    this._videogamesService.getGenres().subscribe(({ body }) => {
-      this.genreList = body;
+    this._videogamesService.getGenres().subscribe((res) => {
+      this.genreList = res;
       this._getVideogames();
     });
   }
 
   private _getVideogames() {
-    this._videogamesService.getVideogames().subscribe(({ body }) => {
-      this.dataSource = this._mapVideogameListToDatasource(body);
+    this._videogamesService.getVideogames().subscribe((res) => {
+      this.dataSource = this._mapVideogameListToDatasource(res);
     });
   }
 
   private _mapVideogameListToDatasource(videogameList: Videogame[]) {
-    return videogameList.map(elem => {
-      return {
-        ...elem,
-        genreName: this.genreList.find(genre => genre.id === elem.genreId).name,
-        releaseDate: new Date(elem.releaseDate)
-      }
-    });
+    if (videogameList !== null && videogameList !== undefined) {
+      return videogameList.map(elem => {
+        return {
+          ...elem,
+          genreName: this.genreList.find(genre => genre.id === elem.genreId).name,
+          releaseDate: new Date(elem.releaseDate)
+        }
+      });
+    }
   }
 
   public openConfirmAlert(index: number) {

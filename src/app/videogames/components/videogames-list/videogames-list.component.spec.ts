@@ -2,7 +2,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VideogamesListComponent } from './videogames-list.component';
-import { VideogamesService } from '@core/services';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { CoreModule } from '@core/core.module';
@@ -17,6 +16,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { VideogamesService } from '@core/services/videogames/videogames.service';
 
 const genreStub = [
   {
@@ -82,12 +82,12 @@ describe('VideogamesListComponent', () => {
 
     videogameServiceSpy.getGenres.and.returnValue(
       new Observable((observer) => {
-        observer.next(new HttpResponse({ body: genreStub }));
+        observer.next( genreStub);
       })
     );
     videogameServiceSpy.getVideogames.and.returnValue(
       new Observable((observer) => {
-        observer.next(new HttpResponse({ body: videogamesStub }));
+        observer.next(videogamesStub);
       })
     );
 

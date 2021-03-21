@@ -1,3 +1,4 @@
+
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
@@ -13,11 +14,11 @@ export class VideogamesService {
 
   constructor(private _http: HttpClient) { }
 
-  getVideogames(): Observable<HttpResponse<Videogame[]>> {
-    return this._http.get<HttpResponse<Videogame[]>>(this.baseURL+'/list');
+  getVideogames(): Observable<Videogame[]> {
+    return this._http.get<Videogame[]>(this.baseURL+'/list');
   }
 
-  getGenres(): Observable<HttpResponse<Genre[]>> {
-    return this._http.get<HttpResponse<Genre[]>>(this.baseURL+'/genre/list');
+  getGenres(): Observable<Genre[]> {
+    return this._http.get<Genre[]>(this.baseURL+'/genre/list');
   }
 }
