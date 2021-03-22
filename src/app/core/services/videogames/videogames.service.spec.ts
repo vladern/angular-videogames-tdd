@@ -51,7 +51,7 @@ describe('VideogamesService', () => {
 
     httpClientSpy.get.and.returnValue(
       new Observable((observer) => {
-        observer.next(new HttpResponse({ body: videogameList }));
+        observer.next(videogameList);
       })
     );
 
@@ -75,7 +75,7 @@ describe('VideogamesService', () => {
 
     httpClientSpy.get.and.returnValue(
       new Observable((observer) => {
-        observer.next(new HttpResponse({ body: genreList }));
+        observer.next(genreList);
       })
     );
 

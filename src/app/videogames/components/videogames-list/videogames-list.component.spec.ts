@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VideogamesListComponent } from './videogames-list.component';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { delay } from 'rxjs/operators'
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { CommonModule } from '@angular/common';
@@ -149,7 +149,7 @@ describe('VideogamesListComponent', () => {
     button.click();
     fixture.detectChanges();
     component.dialogRef.close(true);
-    component.dialogRef.afterClosed().subscribe(() => {
+    component.dialogRef.afterClosed().pipe(delay(100)).subscribe(() => {
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(0, true);
       expect(component.dataSource.length).toBe(1);
