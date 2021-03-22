@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { ColumnConfig } from '@shared/models/table';
+import { ColumnConfig, TextAlign } from '@shared/models/table';
 
 export const columnVideogamesConfigList: ColumnConfig[] = [
   {
@@ -7,12 +7,14 @@ export const columnVideogamesConfigList: ColumnConfig[] = [
     label: 'Title',
     sortable: true,
     dataSourceParamName: 'title',
+    textAlign: TextAlign.LEFT,
   },
   {
     id: 'genreName',
     label: 'Genre',
     sortable: true,
     dataSourceParamName: 'genreName',
+    textAlign: TextAlign.CENTER,
   },
   {
     id: 'tags',
@@ -28,6 +30,7 @@ export const columnVideogamesConfigList: ColumnConfig[] = [
     dataSourceParamName: 'releaseDate',
     pipe: DatePipe,
     pipeArg: 'd/MM/yyy',
+    textAlign: TextAlign.CENTER,
   },
   {
     id: 'price',
@@ -37,6 +40,7 @@ export const columnVideogamesConfigList: ColumnConfig[] = [
     pipe: DecimalPipe,
     pipeArg: '1.2',
     suffix: '€',
+    textAlign: TextAlign.END,
   },
   {
     id: 'delete',

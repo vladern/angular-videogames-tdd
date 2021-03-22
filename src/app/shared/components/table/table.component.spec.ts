@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { TextAlign } from '@shared/models/table';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -343,6 +344,38 @@ describe('TableComponent', () => {
     expect(component.dataSource[4].company).toEqual('AAA');
   });
 
+  it('on click on sort triangles (third time) company dataSource should be ordered descendingly', async () => {
+    component.columnConfigList.push({
+      label: 'Company',
+      sortable: true,
+      dataSourceParamName: 'company',
+    });
+    component.dataSource.push(
+      { company: 'BBB' },
+      { company: 'CCC' },
+      { company: 'DDD' },
+      { company: 'CCC' },
+      { company: 'AAA' }
+    );
+    fixture.detectChanges();
+
+    let sortContainer = fixture.debugElement.nativeElement.querySelector(
+      '.sort-container'
+    );
+    sortContainer.click();
+    fixture.detectChanges();
+    sortContainer.click();
+    fixture.detectChanges();
+    sortContainer.click();
+    fixture.detectChanges();
+
+    expect(component.dataSource[4].company).toEqual('DDD');
+    expect(component.dataSource[3].company).toEqual('CCC');
+    expect(component.dataSource[2].company).toEqual('CCC');
+    expect(component.dataSource[1].company).toEqual('BBB');
+    expect(component.dataSource[0].company).toEqual('AAA');
+  });
+
   it('first column content should be `17/09/2020`', () => {
     const realeaseDate = new Date();
     realeaseDate.setFullYear(2020, 8, 17);
@@ -458,5 +491,125 @@ describe('TableComponent', () => {
     const matChipList = td.querySelectorAll('mat-chip');
     expect(matChipList[0].textContent).toEqual('Action');
     expect(matChipList[1].textContent).toEqual('Roguelige');
+  });
+
+  it('when you sort by two columns first column sort should be return to initial state', async () => {
+    component.columnConfigList.push({
+      label: 'Company',
+      sortable: true,
+      dataSourceParamName: 'company',
+    },
+    {
+      label: 'Company',
+      sortable: true,
+      dataSourceParamName: 'company',
+    });
+    component.dataSource.push(
+      { company: 'BBB' },
+      { company: 'BBB' },
+    );
+    fixture.detectChanges();
+
+    let sortContainerList = fixture.debugElement.nativeElement.querySelectorAll('.sort-container');
+    let firtstArrowUp = sortContainerList[0].querySelector('.arrow-up');
+    let firtstArrowDown = sortContainerList[0].querySelector('.arrow-down');
+    let secondArrowUp = sortContainerList[1].querySelector('.arrow-up');
+    let secondArrowDown = sortContainerList[1].querySelector('.arrow-down');
+    expect(firtstArrowUp).toBeTruthy();
+    expect(firtstArrowDown).toBeTruthy();
+    expect(secondArrowUp).toBeTruthy();
+    expect(secondArrowDown).toBeTruthy();
+
+    sortContainerList[0].click();
+    fixture.detectChanges();
+
+    firtstArrowDown = sortContainerList[0].querySelector('.arrow-down');
+    expect(firtstArrowDown).toBeFalsy();
+
+    sortContainerList[0].click();
+    fixture.detectChanges();
+
+    firtstArrowUp = sortContainerList[0].querySelector('.arrow-up');
+    firtstArrowDown = sortContainerList[0].querySelector('.arrow-down');
+    expect(firtstArrowDown).toBeTruthy();
+    expect(firtstArrowUp).toBeFalsy();
+
+    sortContainerList[1].click();
+    fixture.detectChanges();
+
+    secondArrowUp = sortContainerList[1].querySelector('.arrow-up');
+    secondArrowDown = sortContainerList[1].querySelector('.arrow-down');
+    firtstArrowUp = sortContainerList[0].querySelector('.arrow-up');
+    firtstArrowDown = sortContainerList[0].querySelector('.arrow-down');
+    expect(secondArrowUp).toBeTruthy('secondArrowUp');
+    expect(secondArrowDown).toBeFalsy('secondArrowDown');
+    expect(firtstArrowUp).toBeTruthy('firtstArrowUp');
+    expect(firtstArrowDown).toBeTruthy('firtstArrowDown');
+  });
+
+  it('table should admit tags ', () => {
+    component.columnConfigList.push(
+      {
+        label: 'Price',
+        sortable: false,
+        dataSourceParamName: 'price',
+        hasTags: false,
+        textAlign: TextAlign.END,
+        pipe: DecimalPipe,
+        pipeArg: '1.2',
+        suffix: '€',
+      }
+    );
+    component.dataSource.push({ price: 15 });
+    fixture.detectChanges();
+    const htmlElement: HTMLElement = fixture.nativeElement;
+    const table = htmlElement.querySelector('table');
+    const tr = table.querySelectorAll('tr');
+    const td = tr[1].querySelector('td');
+    expect(td.className).toEqual('textAlignEnd');
+  });
+
+  it('table should admit tags ', () => {
+    component.columnConfigList.push(
+      {
+        label: 'Price',
+        sortable: false,
+        dataSourceParamName: 'price',
+        hasTags: false,
+        textAlign: TextAlign.CENTER,
+        pipe: DecimalPipe,
+        pipeArg: '1.2',
+        suffix: '€',
+      }
+    );
+    component.dataSource.push({ price: 15 });
+    fixture.detectChanges();
+    const htmlElement: HTMLElement = fixture.nativeElement;
+    const table = htmlElement.querySelector('table');
+    const tr = table.querySelectorAll('tr');
+    const td = tr[1].querySelector('td');
+    expect(td.className).toEqual('textAlignCenter');
+  });
+
+  it('table should admit tags ', () => {
+    component.columnConfigList.push(
+      {
+        label: 'Price',
+        sortable: false,
+        dataSourceParamName: 'price',
+        hasTags: false,
+        textAlign: TextAlign.LEFT,
+        pipe: DecimalPipe,
+        pipeArg: '1.2',
+        suffix: '€',
+      }
+    );
+    component.dataSource.push({ price: 15 });
+    fixture.detectChanges();
+    const htmlElement: HTMLElement = fixture.nativeElement;
+    const table = htmlElement.querySelector('table');
+    const tr = table.querySelectorAll('tr');
+    const td = tr[1].querySelector('td');
+    expect(td.className).toEqual('textAlignLeft');
   });
 });

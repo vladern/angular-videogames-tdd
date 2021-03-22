@@ -1,6 +1,6 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, Input, OnInit, Pipe } from '@angular/core';
-import { ColumnConfig, Sort } from '@shared/models/table';
+import { ColumnConfig, Sort, TextAlign } from '@shared/models/table';
 
 @Component({
   selector: 'app-table',
@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
   public Sort = Sort;
   public DatePipe = DatePipe;
   public DecimalPipe = DecimalPipe;
+  public TextAlign = TextAlign;
 
   constructor() {}
 
@@ -25,6 +26,7 @@ export class TableComponent implements OnInit {
       columnConfig.sort === null ||
       columnConfig.sort === Sort.DESC
     ) {
+      this._resetSortInColumnConfigList();
       columnConfig.sort = Sort.ASC;
       this.dataSource.sort((a, b) =>
         this._sortObject(
@@ -35,6 +37,7 @@ export class TableComponent implements OnInit {
         )
       );
     } else {
+      this._resetSortInColumnConfigList();
       columnConfig.sort = Sort.DESC;
       this.dataSource.sort((a, b) =>
         this._sortObject(
@@ -61,4 +64,12 @@ export class TableComponent implements OnInit {
     }
     return 0;
   }
+
+  private _resetSortInColumnConfigList() {
+    this.columnConfigList.forEach(elem => {
+      elem.sort = undefined;
+    });
+  }
 }
+
+

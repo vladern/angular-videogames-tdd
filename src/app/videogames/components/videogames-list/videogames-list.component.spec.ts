@@ -149,7 +149,7 @@ describe('VideogamesListComponent', () => {
     button.click();
     fixture.detectChanges();
     component.dialogRef.close(true);
-    component.dialogRef.afterClosed().pipe(delay(100)).subscribe(() => {
+    component.dialogRef.afterClosed().pipe(delay(1000)).subscribe(() => {
       fixture.detectChanges();
       expect(spy).toHaveBeenCalledWith(0, true);
       expect(component.dataSource.length).toBe(1);

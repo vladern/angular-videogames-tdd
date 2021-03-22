@@ -25,7 +25,7 @@
     </th>
   </tr>
   <tr *ngFor="let row of dataSource; let i = index">
-    <td *ngFor="let columnConfig of columnConfigList">
+    <td *ngFor="let columnConfig of columnConfigList" [ngClass]="{ 'textAlignLeft': columnConfig.textAlign === TextAlign.LEFT, 'textAlignCenter': columnConfig.textAlign === TextAlign.CENTER, 'textAlignEnd': columnConfig.textAlign === TextAlign.END}">
       <span *ngIf="columnConfig.pipe === undefined && columnConfig.hasTags !== true">{{
         row[columnConfig.dataSourceParamName]
       }}</span>

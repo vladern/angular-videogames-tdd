@@ -9,6 +9,7 @@ export interface ColumnConfig {
   pipeArg?: string;
   suffix?: string;
   sort?: Sort;
+  textAlign?: TextAlign,
   icon?: string;
   hasTags?: boolean;
   callback?: (index: number) => void;
@@ -17,4 +18,10 @@ export interface ColumnConfig {
 export enum Sort {
   ASC = 'asc',
   DESC = 'desc',
+}
+
+export enum TextAlign {
+  LEFT,
+  CENTER,
+  END
 }
